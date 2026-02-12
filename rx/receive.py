@@ -27,7 +27,7 @@ print("Configuring Ambient Voltage - Samples:",samples)
 
 for x in range(samples):
     base += rx.read_u16()
-    time.sleep(0.05)
+    time.sleep(0.01)
 
 base = int(base/samples)
 threshold = (peak-base)/2
@@ -58,7 +58,7 @@ while True:
             mode = 2
             lasttime = get_ms()
             print("Starting Data Receive")
-        time.sleep(0.05)
+        #time.sleep(0.05)
         continue
     if mode == 2:
         #print("Im stupid idiot",get_ms()-lasttime)
