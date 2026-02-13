@@ -12,7 +12,7 @@ samples = 50
 base = 0
 peak = 65535
 
-packet_size_bytes = 5
+packet_size_bytes = 32
 
 threshold = 0
 
@@ -84,10 +84,10 @@ while True:
         if volts > threshold and warning_bit_rxed == False:
             print("Begin Data Stream")
             warning_bit_rxed = True
-            time.sleep(clock)
+            time.sleep(clock+clock/5)
             continue
         if warning_bit_rxed == False:
-            time.sleep(clock)
+            #time.sleep(clock)
             continue
         cur_bit = 0
         if volts > threshold:
@@ -100,6 +100,7 @@ while True:
         byte += str(cur_bit)
         bits_rxed += 1
         #print(bits_wo_one)
+        print(bits_rxed)
         if bits_rxed % 8 == 0:
             data_rxed[packet_num].append(byte)
             byte = ""
